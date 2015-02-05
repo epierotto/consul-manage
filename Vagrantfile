@@ -32,17 +32,16 @@ Vagrant.configure('2') do |config|
     guest.vm.network :private_network, ip: '10.0.0.10'
 
     guest.vm.provision :chef_solo do |chef|
+      chef.data_bags_path = "test/data_bags"
+      chef.log_level = :info #:debug
       chef.json = {
         "consul" => {
 	  "serve_ui" => true
         },
 	"consul-manage" => {
-	  "service" => "http",
-	  "port" => 80,
-	  "tags" => ['_docker._http'],
-	  "check" => {
-		"interval" => "10s",
-		"script" => "nc -zv www.google.es 80"
+	  "service" => {
+		"names" => ["redis"],
+		"data_bag" => "consul_services"
 		}
 	}
       }
