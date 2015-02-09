@@ -31,8 +31,8 @@ consul_services.each do |service|
       interval: "#{check_interval}",
       script: "#{check_script}"
     )
-    notifies :reload, 'service[consul]'
-    notifies :restart, 'service[dnsmasq]'
+    notifies :reload, 'service[consul]', :immediately
+    notifies :restart, 'service[dnsmasq]', :immediately
   end
   
 end  
