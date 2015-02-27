@@ -2,11 +2,12 @@
 # Cookbook Name:: consul-manage
 # Recipe:: _define
 #
-# Copyright (C) 2015 YOUR_NAME
+# Copyright (C) 2015 Exequiel Pierotto
 #
 # All rights reserved - Do Not Redistribute
 #
 
+# Defines consul services with handlers checks
 consul_services = node['consul-manage']['service']['names']
 bag = "#{node['consul-manage']['service']['data_bag']}"
 
@@ -21,9 +22,7 @@ consul_services.each do |service|
   check_interval = "#{consul_service['check']['interval']}"
   check_script = "#{consul_service['check']['script']}"
   
-  # For checking port connectivity
-  package "nc"
-  
+  # Define the consul service
   consul_service_def "#{service}" do
     port port
     tags tags

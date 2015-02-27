@@ -2,7 +2,7 @@
 # Cookbook Name:: consul-manage
 # Recipe:: _remove
 #
-# Copyright (C) 2015 YOUR_NAME
+# Copyright (C) 2015 Exequiel Pierotto
 #
 # All rights reserved - Do Not Redistribute
 #

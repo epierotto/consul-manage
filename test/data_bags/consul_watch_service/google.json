@@ -1,0 +1,6 @@
+{
+  "id": "google",
+  "service_name": "google",
+  "passingonly": true,
+  "handler": "echo \"CONSUL WATCH SERVICE TRIGGERED\" | wall"
+}

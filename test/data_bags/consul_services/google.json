@@ -1,0 +1,10 @@
+{
+  "id": "google",
+  "service": "google",
+  "port": 80,
+  "tags": ["_www"],
+  "check": {
+    "interval": "10s",
+    "script": "nc -zv google.com 80"
+  }
+}

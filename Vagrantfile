@@ -40,16 +40,39 @@ Vagrant.configure('2') do |config|
         },
 	"consul-manage" => {
 	  "service" => {
-		"names" => ["redis"],
+		"names" => ["google"],
 		"data_bag" => "consul_services"
+	  },
+
+	  "watch" => {
+		"key" => { 
+			"names" => [],
+			"data_bag" => "consul_watch_key"
+		},
+		"event" => { 
+			"names" => [],
+			"data_bag" => "consul_watch_event"
+		},
+		"service" => { 
+			"names" => ["google"],
+			"data_bag" => "consul_watch_service"
 		}
+	  },
+
+	  "handlers" => {
+		"packages" => ["nc"],
+		"sources" => ["https://dl.bintray.com/mitchellh/consul/0.5.0_web_ui.zip", "https://dl.bintray.com/mitchellh/consul/0.5.0_linux_amd64.zip"],
+		"dir" => "/usr/local/consul/handlers/"
+	  }
 	}
       }
       chef.run_list = [
 	"recipe[consul]",
 	"recipe[consul::ui]",
-	"recipe[consul::dns]",
- 	"recipe[consul-manage]"
+	"recipe[consul-manage::dns]",
+	"recipe[consul-manage::handlers]",
+	"recipe[consul-manage]",
+ 	"recipe[consul-manage::_watch]"
         ]
     end
   end

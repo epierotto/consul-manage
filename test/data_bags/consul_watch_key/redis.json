@@ -1,0 +1,6 @@
+{
+  "id": "redis",
+  "name": "redis",
+  "key": "redis",
+  "handler": ""
+}
