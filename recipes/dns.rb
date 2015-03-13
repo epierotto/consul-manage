@@ -30,7 +30,7 @@ end
 
 file '/etc/dnsmasq.conf' do
   content "server=/consul/127.0.0.1##{node[:consul][:ports][:dns]}"
-  notifies :reload, "service[dnsmasq]", :immediately
+  notifies :restart, "service[dnsmasq]", :immediately
 end
 
 service "#{service_name}" do
